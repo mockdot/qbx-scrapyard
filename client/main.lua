@@ -173,6 +173,9 @@ CreateThread(function()
                     else
                         local model = v?.pedModel
                         lib.requestModel(model, 500)
+                        while not HasModelLoaded(model) do
+                            Wait(500)
+                        end
                         local pedList = CreatePed(4, model, v?.coords.x, v?.coords.y, v?.coords.z - 1, v?.coords.w, true, true)
                         FreezeEntityPosition(pedList, true)
                         exports.ox_target:addLocalEntity(pedList, {
